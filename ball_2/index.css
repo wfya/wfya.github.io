@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(200deg,#537895,#09203f);
+}
+.loader{
+position: relative;
+color: #fff;
+width: 96px;
+height: 68px;
+/* border: 1px solid red; */
+}
+.loader div{
+    /* 继承父元素的color */
+background-color: currentColor;
+}
+/* loader第一个div小球 */
+.loader div:nth-child(1){
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    bottom: 32%;
+    left: 18%;
+    border-radius: 50%;
+    /* 设置基点中心 */
+    transform-origin: center bottom;
+    /* 加速后减速 无限循环 小球动画 */
+    animation: ball-jump 0.6s ease-in-out infinite;
+}
+/* loader下的非第一个div 楼梯 */
+.loader div:not(:nth-child(1)){
+    width: 32px;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translateX(60%);
+    animation: ball-next 1.8s linear infinite;
+}
+/* 为每一层楼梯设置动画延迟 */
+.loader div:nth-child(2){
+    animation-delay: 0s;
+}
+.loader div:nth-child(3){
+    animation-delay: -0.6s;
+}
+.loader div:nth-child(4){
+    animation-delay:-1.2s;
+}
+@keyframes ball-jump {
+    0%{
+        transform: scale(1,0.7);
+    }
+    20%{
+        transform: scale(0.7,1.2);
+    }
+    40%{
+        transform: scale(1,1);
+    }
+    50%{
+        bottom: 150%;
+        transform: scale(1,1);
+    }
+    80%,90%{
+        transform: scale(0.7,1.2);
+    }
+    100%{
+        transform: scale(1,0.7);
+    }
+}
+@keyframes ball-next {
+    0%{
+        top: 0;
+        right: 0;
+        opacity: 0;
+    }
+
+    50%{
+        opacity: 1;
+    }
+
+    100%{
+        top: 100%;
+        right: 100%;
+        opacity: 0;
+    }
+}

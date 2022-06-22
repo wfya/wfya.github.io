@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>document</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: auto;
+            position: relative;
+        }
+
+        .brickBox {
+            width: 500px;
+            height: 300px;
+            /* background-color: yellowgreen; */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .ball {
+            width: 15px;
+            height: 15px;
+            background-color: purple;
+            border-radius: 50%;
+            position: absolute;
+            /* bottom:30px;
+            left:235px; */
+            bottom: 30px;
+            left: 235px;
+        }
+
+        .slider {
+            width: 150px;
+            height: 30px;
+            background-color: #00f;
+            position: absolute;
+            /* left:50%; */
+            left: 175px;
+            /* margin-left:-75px; */
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="brickBox"></div>
+        <div class="ball"></div>
+        <div class="slider"></div>
+    </div>
+    <div style="margin-left: 40%;font-size: 25px;">当前速度: <span id="speed"></span> </div>
+    <div style="margin-left: 40% ;font-size: 25px;">当前打掉的方块数: <span id="count"></span> </div>
+
+</body>
+<script>
+    // 获取当前所有标签
+    var container = document.querySelector('.container')
+    var brickBox = container.querySelector('.brickBox')
+    var ball = container.querySelector('.ball')
+    var slider = container.querySelector('.slider')
+    // 动态创建砖块
+    // 定义砖块大小
+    var brickWidth = 50;
+    var brickHeight = 15;
+    // 计算砖块数量
+    var brickNum = brickBox.clientWidth * brickBox.clientHeight / (brickWidth * brickHeight)
+    console.log(brickNum);
+    // 一行十个砖块
+    var brickColNum = brickBox.clientWidth / brickWidth
+    console.log(brickColNum);
+    // 根据数量去创建
+    for (var i = 0; i < brickNum; i++) {
+        var div = document.createElement('div')
+        setStyle(div, {
+            width: brickWidth + "px",
+            height: brickHeight + "px",
+            backgroundColor: getColor(true),
+            position: 'absolute',
+            top: parseInt(i / brickColNum) * brickHeight + 'px',
+            left: (i % brickColNum) * brickWidth + 'px'
+        })
+        brickBox.appendChild(div)
+    }
+
+    // 点击滑块让小球开始运动
+    // 定义横向移动的值和纵向移动的值
+    var speedX = getRandom(1, 8);
+    var speedY = getRandom(1, 8);
+    // 小球当前的运动速度
+    document.querySelector("#speed").innerHTML = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2))
+    var timer;
+    //点击移动
+    slider.onclick = move;
+    //回车键开始弹
+
+    function move() {
+        var count = 0;
+        clearInterval(timer)
+        timer = setInterval(function () {
+            // 开始移动
+            // 获取小球的left和top
+            let left = ball.offsetLeft;
+            let top = ball.offsetTop;
+
+            // 让left和top增加速度
+            // 小球和滑块相撞
+            if (boom(slider, ball)) {
+                speedY = -speedY
+            }
+            // 小球和大盒子相撞
+            if (left <= 0 || left >= container.clientWidth - ball.offsetWidth) {
+                speedX = -speedX
+            }
+            if (top <= 0) {
+                speedY = -speedY
+            }
+            // 检测所有砖块和小球是否相撞
+            for (let i = 0; i < brickBox.children.length; i++) {
+                if (boom(brickBox.children[i], ball)) {
+
+                    speedY = -speedY
+                    brickBox.removeChild(brickBox.children[i]);
+                    count++;
+                }
+
+
+            }
+            console.log(count)
+            document.querySelector("#count").innerHTML = count
+            // GAME OVER
+            if (top >= container.clientHeight - ball.offsetHeight) {
+                clearInterval(timer)
+                if (confirm("GAME OVER,是否重玩")) {
+                    location.reload();
+                } else {
+                    alert('您最终分数' + count)
+                }
+            }
+            left += speedX
+            top += speedY
+            // 设置给小球的left和top
+            ball.style.left = left + "px"
+            ball.style.top = top + "px"
+        }, 20)
+    }
+
+    // 让滑块跟着鼠标移动
+    slider.onmouseover = function () {
+        document.onmousemove = function (e) {
+            var e = e || window.event;
+            var x = e.pageX;
+            console.log(x, 11111111111);
+            var l = x - container.offsetLeft - 1 - slider.offsetWidth / 2
+            console.log(l, "2222222");
+            if (l < 0) {
+                l = 0
+            }
+            if (l > container.clientWidth - slider.offsetWidth) {
+                l = container.clientWidth - slider.offsetWidth
+            }
+            slider.style.left = l + "px"
+        }
+    }
+    //让滑块跟着左右键盘移动
+    window.onload = function () {
+        document.onkeydown = e => {
+            var e = e || window.event;
+            var keycode = e.keyCode || e.which;
+            var keyword = String.fromCharCode(keycode).toLowerCase();
+            if (keycode == 13) {
+                move();
+            }
+            if (keyword == 'a') {
+                console.log("1111")
+                slider.style.left = slider.offsetLeft - 15 + "px"
+            } else if (keyword == 'd') {
+                console.log("222")
+                slider.style.left = slider.offsetLeft + 15 + "px"
+            }
+            console.log(slider.offsetLeft)
+
+
+        }
+
+    }
+    // 封装检测相撞的函数
+    function boom(node1, node2) {
+        // 不撞在一起的只有4中可能
+        if (node1.offsetLeft + node1.offsetWidth < node2.offsetLeft || node1.offsetTop + node1.offsetHeight < node2
+            .offsetTop || node2.offsetLeft + node2.offsetWidth < node1.offsetLeft || node2.offsetTop + node2
+            .offsetHeight < node1.offsetTop) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    // 封装获取随机颜色的函数
+    function getColor(hex = true) {
+        if (hex) {
+            var color = '#'
+            for (var i = 0; i < 3; i++) {
+                var rgb = getRandom(256).toString(16);
+                rgb = rgb.length === 1 ? '0' + rgb : rgb;
+                color += rgb
+            }
+            return color;
+        }
+        return `rgb(${getRandom(256)},${getRandom(256)},${getRandom(256)})`
+    }
+    // 封装设置样式的函数
+    function setStyle(ele, styleObj) {
+        for (var attr in styleObj) {
+            ele.style[attr] = styleObj[attr]
+        }
+    }
+    // 封装获取随机数的函数 区间数
+    function getRandom(a, b = 0) {
+        var max = Math.max(a, b);
+        var min = Math.min(a, b)
+        return Math.floor(Math.random() * (max - min)) + min
+    }
+</script>
+
+</html>

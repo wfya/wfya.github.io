@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>SVG-Text-Path</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="page">
+    <svg width="100%" height="100%" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <mask id="mask" x="0" y="0" width="1" height="1" maskUnits="objectBoundingBox"
+          maskContentUnits="userSpaceOnUse">
+          <text x="600" y="190" width="1000" height="400"
+            style="font-size:230;fill:white;text-anchor:middle;font-weight:600;">
+            water
+          </text>
+        </mask>
+        <pattern id="water" x="0" y=".5" width=".2" height="3" patternUnits="objectBoundingBox"
+          patternContentUnits="userSpaceOnUse">
+          <animate attributeName="x" dur="3s" from="0" to="1" repeatCount="indefinite" />
+          <animate attributeName="y" dur="20s" calcMode="linear" values="1;0;1" keyTimes="0;0.5;1"
+            repeatCount="indefinite" />
+          <path id="wave_path-b" d="
+             M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z" style="stroke:none;fill:#43b3f8b8;">
+            <animate attributeName="d" values="
+                M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z;
+                M0,15C50.5,15,68.3,5,100,5c37.4,0,44.7,10,100,10v35H0V15z;
+                M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z
+                " keyTimes="0;0.5;1" begin="0" dur="10s" calcMode="linear" repeatCount="indefinite" />
+          </path>
+          <path id="wave_path-a" d="
+             M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z" style="stroke:none;fill:#277dec;">
+            <animate attributeName="d" values="
+                M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z;
+                M0,0c50.5,0,68.3,25,100,25c37.4,0,44.7-25,100-25v50H0V0z;
+                M0,0c50.5,0,68.3,0,100,0c37.4,0,44.7,0,100,0v50H0V0z
+                " keyTimes="0;0.5;1" begin="0" dur="10s" calcMode="linear" repeatCount="indefinite" />
+          </path>
+          <rect x="0" y="49" width="200" height="200" style="fill:#1575f2;"></rect>
+        </pattern>
+      </defs>
+
+      <rect x="100" y="0" width="1000" height="200" style="fill:white;mask:url(#mask);" />
+      <rect x="100" y="0" width="1000" height="200" style="fill:url(#water);mask:url(#mask);" />
+    </svg>
+  </div>
+
+</body>
+
+</html>

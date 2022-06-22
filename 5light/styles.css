@@ -1,0 +1,169 @@
+/* @font-face {
+  font-family: Pacifico;
+  src:url(Pacifico.ttf);
+} */
+html {
+  font-size: 40px;
+  background: black;
+}
+.light-box{
+  width: 1048px;
+  height: 300px;
+}
+input {
+  display: none;
+}
+
+.neon {
+  font-size: 1rem;
+  color: pink;
+  animation:
+    neon-off 1s .5s both,
+    neon-off-color 1.5s .5s ease-out backwards;
+}
+
+input:checked~.neon {
+  animation:
+    neon-on 4s .8s ease-in-out infinite alternate,
+    neon-on-color 1s .5s ease-out forwards;
+}
+
+.switch {
+  text-align: center;
+  font-size: .5rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 4em;
+  height: 1.6em;
+  border-radius: 2em;
+  border: .04em solid silver;
+  box-shadow:
+    1px 1px 2px #211 inset,
+    2px 2px 4px #322 inset,
+    3px 3px 6px #544 inset;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.3) 25%,
+      transparent 25%,
+      transparent 50%) center/5px 5px,
+    linear-gradient(90deg, pink 50%, black 50%) -3.2em /200% 100% no-repeat;
+  transition: background-position .5s;
+}
+
+input:checked~.switch {
+  background-position: -.8em;
+  transition: background-position .5s;
+}
+
+.switch::before {
+  content: "";
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+
+  position: absolute;
+  top: calc(50% - .75em);
+  left: 1%;
+
+  box-shadow:
+    1px 1px 1px #555,
+    2px 2px 1px #444,
+    3px 3px 1px #333,
+    5px 5px 10px black;
+  background-image:
+    radial-gradient(ellipse 8% 50% at 50% 0%,
+      hsla(0, 0%, 100%, .5) 0%,
+      hsla(0, 0%, 100%, 0) 100%),
+    radial-gradient(ellipse 12% 50% at 50% 100%,
+      hsla(0, 0%, 100%, .6) 0,
+      hsla(0, 0%, 100%, 0) 100%),
+    radial-gradient(ellipse 50% 7% at 0 50%,
+      hsla(0, 0%, 100%, .5) 0,
+      hsla(0, 0%, 100%, 0) 100%),
+    radial-gradient(ellipse 50% 5% at 100% 50%,
+      hsla(0, 0%, 100%, .5) 0,
+      hsla(0, 0%, 100%, 0) 100%),
+    repeating-radial-gradient(100% 100% at 50% 50%,
+      hsla(0, 0%, 0%, 0) 0%,
+      hsla(0, 0%, 0%, 0) 7%,
+      hsla(0, 0%, 0%, .1) 8.5%),
+    repeating-radial-gradient(100% 100% at 50% 50%,
+      hsla(0, 0%, 100%, 0) 0%,
+      hsla(0, 0%, 100%, 0) 15%,
+      hsla(0, 0%, 100%, .1) 18%),
+    repeating-radial-gradient(100% 100% at 50% 50%,
+      hsla(0, 0%, 100%, 0) 0%,
+      hsla(0, 0%, 100%, 0) 3%,
+      hsla(0, 0%, 100%, .2) 4%),
+    radial-gradient(200% 50% at 50% 50%,
+      hsla(0, 0%, 90%, 1) 5%,
+      hsla(0, 0%, 85%, 1) 30%,
+      hsla(0, 0%, 60%, 1) 100%);
+  transform: rotate(5deg);
+  transition: left .5s, transform .8s;
+}
+
+input:checked+.switch::before {
+  left: calc(99% - 1.5em);
+  transform: rotate(15deg);
+  transition: left .5s, transform .8s;
+}
+
+@keyframes neon-on-color {
+  to {
+    color: white;
+  }
+}
+
+@keyframes neon-off-color {
+  from {
+    color: white;
+  }
+}
+
+@keyframes neon-off {
+  from {
+    text-shadow:
+      0 0 8px #fff,
+      0 0 15px #fff,
+      0 0 25px #fff,
+      0 0 30px #fabaa6,
+      0 0 50px #fabaa6,
+      0 0 60px #fabaa6,
+      0 0 80px #fabaa6,
+      0 0 90px #fabaa6;
+  }
+
+  to {
+    text-shadow: none;
+  }
+}
+
+@keyframes neon-on {
+  from {
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #fff,
+      0 0 40px #fabaa6,
+      0 0 70px #fabaa6,
+      0 0 80px #fabaa6,
+      0 0 100px #fabaa6,
+      0 0 150px #fabaa6;
+  }
+
+  to {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #fff,
+      0 0 20px #a88d84,
+      0 0 35px #fabaa6,
+      0 0 40px #fabaa6,
+      0 0 50px #fabaa6,
+      0 0 75px #fabaa6;
+  }
+}

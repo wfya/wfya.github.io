@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>镂空文字</title>
+    <link rel="stylesheet" href="./styles.css"/>
+  </head>
+  <body>
+    <div class="page">
+      <div class="video-bg">
+        <video autoplay muted loop preload>
+          <source src="./riluo.mp4" type="video/mp4"></source>
+        </video>
+      </div>
+      <svg class="svg" viewbox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <mask id="mask" x="0" y="0">
+            <rect class="mask-rect" x="0" y="0" width="100%" height="100%"></rect>
+            <text class="mask-text" x="250" y="60%">春暖花开</text>
+          </mask>
+        </defs>
+        <rect class="svg-rect" x="0" y="0" width="100%" height="100%"></rect>
+      </svg>
+    </div>
+  </body>
+</html>

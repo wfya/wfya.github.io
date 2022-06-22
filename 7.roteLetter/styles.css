@@ -1,0 +1,47 @@
+html{
+  font-size: 20px;
+  font-family: "Microsoft YaHei",sans-serif;
+}
+p{
+  font-size: 1rem;
+}
+.threeD{
+  text-align: center;
+}
+.letter-box{
+  color:pink;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.letter-box:before,
+.letter-box:after{
+  content:attr(letter);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left center;
+  transition: all .5s ease-in;
+}
+.letter-box:hover:before,.letter-box:hover:after{
+  transition: all .2s ease-out;
+}
+.letter-box:before{
+  color:white;
+  z-index: 2;
+  transform: rotateY(20deg);
+  text-shadow:1px 1px #888,-1px -1px #eee;
+}
+.letter-box:hover:before{
+  transform: rotateY(45deg);
+}
+.letter-box:after{
+  color:rgba(0,0,0,.2);
+  z-index: 1;
+  filter:blur(1px);
+  transform: scale(1.05,1) skewY(2deg);
+}
+.letter-box:hover:after{
+  transform: rotateY(40deg) skewY(20deg) scale(1.1,1);
+}

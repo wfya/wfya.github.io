@@ -1,0 +1,209 @@
+html {
+    background-color: pink;
+    /* font-size:100px; */
+    padding: 1em;
+    margin-top: 400px;
+}
+
+.dice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice,
+.animation-x,
+.animation-y,
+.box,
+.face {
+    transform-style: preserve-3d;
+}
+
+.dice,
+.animation-x,
+.animation-y,
+.box,
+.face,
+.face::after,
+.axis-face {
+    width: 1em;
+    height: 1em;
+}
+
+.dice {
+    margin: auto;
+}
+
+.box {
+    position: relative;
+}
+
+.face,
+.face::after,
+.axis-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.face {
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    padding: .15em;
+    background-color: #fff;
+    border-radius: 20%;
+    box-shadow: 0 0 .2em #ccc inset;
+    padding: 15px;
+    display: flex;
+}
+.face::after{
+    content:"";
+    display: block;
+    border-radius: .2em;
+    transform: translateZ(-.2px);
+    background-color: #e0e0e0;
+  }
+  .axis-face{
+    background:#e0e0e0;
+  }
+/* 点的样式 */
+.dot {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background-color: #444;
+    border-radius: 50%;
+    box-shadow: inset .05 .05 .1em black;
+}
+
+.face.one {
+    align-items: center;
+    justify-content: center;
+}
+
+.face.two {
+    justify-content: space-around;
+}
+
+.face.two .dot:nth-child(2) {
+    align-self: flex-end;
+}
+
+.face.three {
+    justify-content: space-around;
+}
+
+.face.three .dot:nth-child(2) {
+    align-self: center;
+}
+
+.face.three .dot:nth-child(3) {
+    align-self: flex-end;
+}
+
+.face.four {
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.face.four .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.face.five {
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.face.five .row:nth-child(2) {
+    align-self: center;
+}
+
+.face.five .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.face.six {
+    align-items: center;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
+}
+
+.face.six .row {
+    align-items: center;
+    /* display: flex; */
+    justify-content: space-evenly;
+}
+
+/* 面的方位*/
+.face.front {
+    transform: translateZ(2.5em);
+}
+
+.face.back {
+    transform: translateZ(-2.5em) rotateY(180deg);
+}
+
+.face.up {
+    transform: translateY(-50%) rotateX(90deg);
+}
+
+.face.down {
+    transform: translateY(50%) rotateX(-90deg);
+}
+
+.face.left {
+    transform: translateX(-50%) rotateY(-90deg);
+}
+
+.face.right {
+    transform: translateX(50%) rotateY(90deg);
+}
+
+.axis-face.x {
+    transform: rotateY(90deg);
+}
+
+.axis-face.y {
+    transform: rotateX(90deg);
+}
+
+.axis-face.z {
+    transform: rotateZ(90deg);
+}
+
+/*骰子动画*/
+.animation-x {
+    animation: rotateX 5s infinite linear;
+}
+
+.animation-y {
+    animation: rotateY 5s infinite linear;
+}
+
+.box {
+    transform: rotateX(-45deg) rotateY(45deg);
+}
+
+@keyframes rotateY {
+    from {
+        transform: rotateY(0);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes rotateX {
+    from {
+        transform: rotateX(0);
+    }
+
+    to {
+        transform: rotateX(360deg);
+    }
+}

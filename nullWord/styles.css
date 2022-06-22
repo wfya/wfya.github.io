@@ -1,0 +1,56 @@
+html,body,div,p{
+  margin:0;
+  padding: 0;
+}
+html{
+  font-size: 100px;
+  text-align: center;
+}
+.page{
+  position: relative;
+  width:100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.video-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: white;
+}
+.video-bg video{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  /* object-fit:fill; */
+}
+.svg{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.mask-rect{
+  fill:rgb(240,240,240);
+}
+.mask-text{
+  font-size: 70;
+  font-weight: 900;
+  text-anchor:middle;
+  dominant-baseline:baseline;
+  fill:black;
+}
+.svg-rect{
+  fill:white;
+  mask:url(#mask);
+}

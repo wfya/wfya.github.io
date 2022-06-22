@@ -1,0 +1,10 @@
+html{
+  font-size: 100px;
+  font-family: "Microsolf YaHei",sans-serif;
+  background: black;
+  text-align: center;
+}
+.page html body{
+	width:100%;
+	height:100%;
+}

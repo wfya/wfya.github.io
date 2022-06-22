@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg文字线条动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            min-width: 100vw;
+            background-color: #202020;
+        }
+
+        div {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text {
+            stroke: #ffffff;
+            fill: none;
+            stroke-width: 6;
+            stroke-dasharray: 0, 300;
+            stroke-dashoffset: 0;
+            font-size: 20.5rem;
+        }
+
+        .ani:nth-child(3n+1) {
+            stroke: #b21f66;
+            animation: stroke1 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .ani:nth-child(3n+2) {
+            stroke: #fe346e;
+            animation: stroke2 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .ani:nth-child(3n+3) {
+            stroke: #ffbd69;
+            animation: stroke3 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes stroke1 {
+            100% {
+                stroke-dasharray: 40, 80;
+                stroke-dashoffset: 220;
+            }
+        }
+
+        @keyframes stroke2 {
+            100% {
+                stroke-dasharray: 40, 80;
+                stroke-dashoffset: 140;
+            }
+        }
+
+        @keyframes stroke3 {
+            100% {
+                stroke-dasharray: 40, 80;
+                stroke-dashoffset: 40;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <svg viewBox="0 0 1700 1200" height="750px" version="1.2" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="text">
+                <text text-anchor="middle" x="50%" y="50%" dy=".35em">
+                    Hello
+                </text>
+            </symbol>
+            <use xlink:href="#text" class="text ani"></use>
+                <use xlink:href="#text" class="text ani"></use>
+                    <use xlink:href="#text" class="text ani"></use>
+        </svg>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+html
+{
+	background-color: black;
+	font-size:100px;
+	padding: 1em;
+	text-align: center;
+}
+.btn-group{
+	display: inline-block;
+}
+
+/*骰子动画*/
+.dice.ani .vertical{
+	animation: jump 1s linear;
+}
+.dice.ani .horizontal{
+	animation: rotateY 2s ease-out;
+}
+.dice.ani .cube{
+	transition: transform 2.1s ;
+}
+
+@keyframes rotateY {
+	from{transform:rotateY(0);}
+	to{transform:rotateY(1800deg);}
+}
+/*@keyframes rotateX {
+	from{transform:rotateX(0);}
+	to{transform:rotateX(3600deg);}
+}*/
+@keyframes jump {
+		from{transform: translateY(-3.6em);}
+		30%{transform: translateY(-3em);}
+		60%{transform: translateY(0);}
+		70%{transform: translateY(-1.5em);}
+		80%{transform: translateY(0);}
+		90%{transform: translateY(-.6em);}
+		to,10%{transform: translateY(0);}
+}
+
+/*转到对应点数的动画*/
+.cube{
+	transform: rotateX(-10deg) rotateY(10deg);
+}
+.cube[point=p1]{
+  transform: rotateX(-10deg) rotateY(10deg);
+}
+.cube[point=p2]{
+  transform: rotateX(-10deg) rotateY(190deg);
+}
+.cube[point=p3]{
+  transform: rotateX(-100deg) rotateY(0) rotateZ(10deg);
+}
+.cube[point=p4]{
+  transform: rotateX(80deg) rotateY(0) rotateZ(-10deg);
+}
+.cube[point=p5]{
+  transform: rotateX(-10deg) rotateY(100deg);
+}
+.cube[point=p6]{
+  transform: rotateX(-10deg) rotateY(-80deg);
+}
+
+/*面的样式*/
+.dice,.vertical,.horizontal,.cube,.face{
+	transform-style:preserve-3d;
+}
+.dice,.vertical,.horizontal,.cube,.face,.face::after,.axis-face{
+	width:1em;
+	height: 1em;
+}
+.dice{
+	margin: auto;
+}
+.cube{
+  position: relative;
+}
+.face,.face::after,.axis-face{
+	position: absolute;
+  top:0;
+  left: 0;
+}
+.face{
+	box-sizing: border-box;
+  padding: .15em;
+  background-color: white;
+  border-radius: 40%;
+  box-shadow: 0 0 .2em #ccc inset;
+}
+.face::after{
+  content:"";
+  display: block;
+  border-radius: .2em;
+  transform: translateZ(-.1px);
+  background-color: #e0e0e0;
+}
+.axis-face{
+  background:#e0e0e0;
+}
+
+/*点的样式*/
+.dot{
+  width:.2em;
+  height: .2em;
+  display: inline-block;
+  background: #444;
+  border-radius: 50%;
+  box-shadow: inset .05em .05em .1em black;
+}
+/* 面的方位*/
+.face.front{
+  transform: translateZ(.5em);
+}
+.face.back{
+  transform: translateZ(-.5em) rotateY(180deg);
+}
+.face.up{
+  transform: translateY(-50%) rotateX(90deg);
+}
+.face.down{
+  transform: translateY(50%) rotateX(-90deg);
+}
+.face.left{
+  transform: translateX(-50%) rotateY(-90deg);
+}
+.face.right{
+  transform: translateX(50%) rotateY(90deg);
+}
+.axis-face.x{
+  transform:rotateY(90deg);
+}
+.axis-face.y{
+  transform:rotateX(90deg);
+}
+.axis-face.z{
+}
+
+/* 点的排列布局*/
+.face,.dot-row{
+  display: flex;
+}
+.face.one{
+  align-items: center;
+  justify-content: center;
+}
+.face.two{
+  justify-content: space-around;
+}
+.face.two .dot:nth-child(2){
+  align-self: flex-end;
+}
+.face.three{
+  justify-content: space-around;
+}
+.face.three .dot:nth-child(2){
+  align-self:center;
+}
+.face.three .dot:nth-child(3){
+  align-self: flex-end;
+}
+.face.four{
+  flex-direction: column;
+  justify-content: space-between;
+}
+.face.four .dot-row{
+  justify-content: space-between;
+}
+.face.five{
+  flex-direction: column;
+  justify-content: space-between;
+}
+.face.five .dot-row{
+  justify-content: space-between;
+}
+.face.five .dot-row:nth-child(2){
+  justify-content:center;
+}
+.face.six{
+  flex-direction: column;
+  justify-content: space-around;
+}
+.face.six .dot-row{
+  justify-content: space-between;
+}

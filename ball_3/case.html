@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>小球运动</title>
+    <style type="text/css">
+        body {
+            font-size: 20px;
+        }
+
+        #box {
+            width: 50rem;
+            height: 30rem;
+            /* border: 1px solid red; */
+            background-color: pink;
+            position: relative;
+           
+            margin: 0 auto;
+        }
+
+        #ball {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 5rem;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .btn-box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            width: 20rem;
+            height: 10rem;
+            font-size: 2rem;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="ball">
+
+        </div>
+    </div>
+    <div class="btn-box">
+        <button id="stop" onclick="fly()">开始</button>
+        <button id="stop" onclick="stop()">停止</button>
+    </div>
+
+    <script type="text/javascript">
+        var ball = document.getElementById("ball");
+        var box = document.getElementById("box");
+        var sport;
+
+        function fly() {
+            var speedx = 5;
+            var speedy = 5;
+
+            sport = setInterval(function () {
+                ball.style.left = ball.offsetLeft + speedx + 'px';
+                ball.style.top = ball.offsetTop + speedy + 'px';
+
+                if (ball.offsetTop >= 480 - 80 || ball.offsetTop <= 0) {
+                    speedy *= -1;
+                }
+                if (ball.offsetLeft >= 800 - 80 || ball.offsetLeft <= 0) {
+                    speedx *= -1;
+                }
+            }, 1000/60)
+        }
+
+        function stop() {
+            clearInterval(sport); //停止小球的运动
+        }
+    </script>
+</body>
+
+</html>

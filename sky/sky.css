@@ -1,0 +1,43 @@
+html
+{
+	background-color: black;
+	font-size:100px;
+}
+.sky {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 50%;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sky {
+    transform-style: preserve-3d;
+    perspective: 500px;
+    perspective-origin: center center;
+}
+
+.star {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: transparent;
+}
+.star{
+	transform: translateZ(-1500px);
+}
+.star.ani{
+	animation: move 1s;
+}
+
+@keyframes move {
+	from{opacity: 0;}
+	30%{opacity: 1;}
+	90%{opacity: 1;}
+	to{opacity: 0;transform: translateZ(600px);}
+}

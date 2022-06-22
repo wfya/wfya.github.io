@@ -1,0 +1,347 @@
+@font-face {
+  font-family: Pacifico;
+  src:url(Pacifico.ttf);
+}
+html{
+  font-size: 100px;
+  font-family: Arial,sans-serif;
+  background: #333;
+  text-align: center;
+}
+
+.page{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.neon-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background: #111;
+}
+.neon{
+  font-family: "Pacifico",sans-serif;
+  width: 6rem;
+  height: 2.5rem;
+  position: relative;
+}
+.neon::before,.animation{
+  width:5rem;
+  height: 1.5rem;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-top-left-radius: 1.8rem 1.5rem;
+  border-top-right-radius: 4.5rem 1.5rem;
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+}
+.neon::before{
+  content:"";
+  display: block;
+  box-shadow: none;
+  transition: box-shadow .5s 1s;
+}
+.neon.on::before{
+  box-shadow:
+    0 0 10px 10px rgba(255,0,0,.1),
+    0 0 12px 15px rgba(235,0,0,.1),
+    0 0 16px 20px rgba(220,0,0,.1),
+    0 0 20px 25px rgba(200,0,0,.1),
+    0 0 25px 30px rgba(180,0,0,.1),
+    0 0 30px 35px rgba(160,0,0,.1),
+    0 0 36px 40px rgba(120,0,0,.1),
+    0 0 40px 50px rgba(100,0,0,.1),
+    0 0 50px 70px rgba(60,0,0,.1),
+    0 0 10px 10px rgba(255,0,0,.1) inset,
+    0 0 12px 15px rgba(235,0,0,.1) inset,
+    0 0 16px 20px rgba(220,0,0,.1) inset,
+    0 0 20px 25px rgba(200,0,0,.1) inset,
+    0 0 25px 30px rgba(180,0,0,.1) inset,
+    0 0 30px 35px rgba(160,0,0,.1) inset,
+    0 0 36px 40px rgba(120,0,0,.1) inset,
+    0 0 40px 50px rgba(100,0,0,.1) inset,
+    0 0 50px 70px rgba(60,0,0,.1) inset;
+    transition: box-shadow .5s 1s;
+    animation:blink-d 0.1s ease-in-out infinite 1s;
+}
+.animation{
+  box-shadow:
+    0 0 2px 4px rgba(155,100,100,0.1),
+    0 -2px 2px 3px rgba(155,100,100,0.1) inset,
+    0 0 2px 10px rgba(255,100,100,0.1),
+    0 0 2px 7px rgba(255,100,100,0.1) inset,
+    0 0 12px 13px rgba(100,0,0,0.1),
+    0 0 12px 11px rgba(100,0,0,0.1) inset,
+    0 15px 30px 18px rgba(0,0,0,1),
+    0 20px 25px 12px rgba(0,0,0,1) inset;
+  transition: box-shadow .5s 1s;
+}
+.neon.on .animation{
+  box-shadow:
+    0 0 2px 4px rgba(255,200,200,0.5),
+    0 -2px 2px 3px rgba(255,200,200,0.5) inset,
+    0 0 2px 10px rgba(255,100,100,0.9),
+    0 0 2px 7px rgba(255,100,100,1) inset,
+    0 0 12px 13px rgba(255,0,0,0.9),
+    0 0 12px 11px rgba(255,0,0,0.7) inset,
+    0 15px 30px 18px rgba(0,0,0,.9),
+    0 20px 25px 12px rgba(0,0,0,.9) inset;
+  transition: box-shadow .5s 1s;
+}
+
+.text{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-40%) rotate(5deg);
+  font-size: 0;
+  white-space: nowrap;
+  color:#3a3720;
+  text-shadow:
+    0 2px 2px rgba(30,30,30,.4),
+    0 1px 0 rgba(30,30,30,.2),
+    0 15px 38px black,
+    0 15px 10px black,
+    0 5px 12px black;
+  transition: text-shadow .5s .5s,color .5s .5s;
+}
+.neon.on .text{
+  color:rgba(50, 231, 255, 0.9);
+  text-shadow:
+    0 3px 10px rgba(0,0,0,.6),
+    0 2px 8px rgba(0,0,0,.7),
+    0 1px 6px rgba(0,0,0,.8),
+    0 0 2px rgba(0,0,0,.8),
+    0 0 5px rgba(255,200,0,1),
+    0 0 28px rgba(255,50,0,0.9),
+    0 15px 38px black,
+    0 15px 10px black,
+    0 5px 12px black,
+    0 0 60px rgba(226,221,0,0.5),
+    0 0 30px rgba(185,245,7,0.7);
+  transition: text-shadow .5s .5s,color .5s .5s;
+}
+.text>span{
+  font-size: .8rem;
+}
+.text>span:nth-child(1){
+  font-size: 1rem;
+}
+.neon.on .blink-1{
+  animation:blink-a 0.01s infinite;
+}
+.neon.on .blink-2{
+  animation:blink-b 7s infinite;
+}
+.neon.on .blink-3{
+  animation:blink-b 2s infinite;
+}
+.neon.on .blink-4{
+  animation:blink-c 5s infinite;
+}
+
+@keyframes blink-a{
+  50%{
+    color:#3a3720;
+    text-shadow:
+      0 15px 38px black,
+      0 15px 10px black,
+      0 5px 12px black;
+    }
+}
+@keyframes blink-b {
+  50%,52%,54%,56%,58%,60%{
+    color:inherit;
+    text-shadow: inherit;
+  }
+  51%,53%,55%,57%,59%{
+    color:#3a3720;
+    text-shadow:
+      0 15px 38px black,
+      0 15px 10px black,
+      0 5px 12px black;
+  }
+}
+@keyframes blink-c{
+  0%,2%,40%,42%,44%{
+    color:#3a3720;
+    text-shadow:
+      0 15px 38px black,
+      0 15px 10px black,
+      0 5px 12px black;
+  }
+  1%,41%,43%,45%,100%{
+    color:inherit;
+    text-shadow: inherit;
+  }
+}
+
+@keyframes blink-d {
+  50%{
+    box-shadow:
+      0 0 10px 10px rgba(255,0,0,.05),
+      0 0 10px 15px rgba(235,0,0,.05),
+      0 0 10px 20px rgba(220,0,0,.05),
+      0 0 10px 25px rgba(200,0,0,.05),
+      0 0 10px 30px rgba(180,0,0,.05),
+      0 0 10px 35px rgba(160,0,0,.05),
+      0 0 10px 40px rgba(120,0,0,.05),
+      0 0 10px 50px rgba(100,0,0,.05),
+      0 0 10px 70px rgba(60,0,0,.05),
+      0 0 10px 10px rgba(255,0,0,.05) inset,
+      0 0 10px 15px rgba(235,0,0,.05) inset,
+      0 0 10px 20px rgba(220,0,0,.05) inset,
+      0 0 10px 25px rgba(200,0,0,.05) inset,
+      0 0 10px 30px rgba(180,0,0,.05) inset,
+      0 0 10px 35px rgba(160,0,0,.05) inset,
+      0 0 10px 40px rgba(120,0,0,.05) inset,
+      0 0 10px 50px rgba(100,0,0,.05) inset,
+      0 0 10px 70px rgba(60,0,0,.05) inset;
+  }
+}
+
+.switch-area{
+  height: 2em;
+  display: flex;
+  align-items: center;
+  background: silver;
+}
+.switch{
+  font-size: 1rem;
+  display: block;
+  position: relative;
+  margin:2rem auto;
+  width:3rem;
+  height: 1.5rem;
+  border-radius:1rem;
+  background:
+    linear-gradient(
+      to bottom,
+      hsla(0, 0%, 40%, 1),
+      hsla(0, 0%, 95%, 1));
+  box-shadow: 0 -2px white inset,0 2px gray inset;
+}
+.switch>input{
+  display: none;
+}
+.switch:before,.switch:after,.switch>.slider::before,.switch>.slider::after{
+  content:"";
+}
+.switch:before,
+.switch:after,
+.switch>.slider,
+.switch>.slider::before,
+.switch>.slider::after,
+.center{
+  display: block;
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+.switch:before{
+  width:2.4rem;
+  height: 1rem;
+  border-radius: .5rem;
+  background: linear-gradient(to bottom,#464343 20%,#f4eeee 100%);
+}
+.switch:after{
+  width:2.36rem;
+  height:.96rem;
+  border-radius: .49rem;
+  box-shadow: 0 3px 20px hsla(0,0%,0%,1) inset;
+}
+.switch>.slider{
+  width:0;
+  height:0;
+  left:.7rem;
+  z-index: 2;
+  transition: left .5s;
+}
+.switch>input:checked~.slider{
+  left:2.2rem;
+  transition: left .5s;
+}
+.switch>.slider::before{
+  width:1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background:linear-gradient(to top, #9e9e9e 20%, #f4f4f4);
+  box-shadow: 0 2px 10px black;
+}
+.switch>.slider::after{
+  width:.9rem;
+  height: .9rem;
+  border-radius: 50%;
+  background: #d5d4d4;
+}
+
+.center{
+  width:2.36rem;
+  height:.96rem;
+  border-radius: .48rem;
+  overflow: hidden;
+  box-shadow:
+    0 1px 30px hsla(0,0%,0%,1) inset,
+    0 2px 10px 2px hsla(0,0%,0%,1) inset;
+}
+.center::before,.center::after{
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:calc(100% - .4rem);
+  height:100%;
+  line-height: .9rem;
+  font-size: .3rem;
+  font-weight: bold;
+}
+.center::before{
+    content:"open";
+   text-align: center;
+    background: rgb(247, 123, 47);
+    border-top-left-radius: .45rem;
+    border-bottom-left-radius: .45rem;
+    left:-1.48rem;
+    color:rgba(0,255,0,.5);
+    text-shadow:none;
+    transition: left .5s,color .5s,text-shadow .5s;
+}
+.center::after{
+    content:"off";
+    background: gray;
+    text-align: right;
+    border-top-right-radius: .45rem;
+    border-bottom-right-radius: .45rem;
+    padding-right: 25%;
+    left:.48rem;
+    color:rgba(255,0,0,.8);
+    text-shadow:
+      0px 0px 1px hsla(0,0%,50%,.3),
+      0 0 15px rgba(255,0,0,.8),
+      0 0 20px rgba(255,0,0,1);
+    transition: left .5s,color .5s .5s,text-shadow .5s .5s;
+}
+.switch>input:checked ~.center::before{
+  left:-20px;
+  color:rgba(0,255,0,1);
+  text-shadow:
+    0px 0px 2px hsla(0,0%,50%,.3),
+    0 0 15px rgba(0,255,0,.8),
+    0 0 20px rgba(0,255,0,1);
+  transition: left .5s,color .5s .5s,text-shadow .5s .5s;
+}
+.switch>input:checked ~.center::after{
+  left:1.96rem;
+  color:rgba(255,0,0,.3);
+  text-shadow: none;
+  transition: left .5s,color .5s,text-shadow .5s;
+}
