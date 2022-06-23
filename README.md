@@ -1,7 +1,7 @@
 
-###### [1-弹弹球](https://active.github.io/1_demo/index.html)
+###### [1-弹弹球](https://wfya.github.io/active.github.io/1_demo/index.html)
 
-###### [2-旋转的骰子-1](https://active.github.io/2_demo/index.html)
+###### [2-旋转的骰子-1](https://wfya.github.io/active.github.io/2_demo/index.html)
 
 ###### [3-旋转的骰子-2](https://active.github.io/3_demo/index.html)
 
