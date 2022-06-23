@@ -1,5 +1,5 @@
 
-###### [1-弹弹球](https://wfya.github.io/active.github.io/1_demo/index.html)
+###### [1-弹弹球](https://wfya/active.github.io/1_demo/index.html)
 
 ###### [2-旋转的骰子-1](https://wfya.github.io/active.github.io/2_demo/index.html)
 
