@@ -3,7 +3,7 @@
 
 ###### [2-旋转的骰子-1](https://wfya.github.io/active.github.io/2_demo/index.html)
 
-###### [3-旋转的骰子-2](https://wfya.github.io/active.github.io/3_demo/index.html)
+###### [3-旋转的骰子-2](https://wfya.github.io/3_demo/index.html)
 
 ###### [4-星空穿越](https://wfya.github.io/active.github.io/4_demo/index.html)
 
